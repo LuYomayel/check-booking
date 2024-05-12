@@ -10,7 +10,7 @@ export class TestController {
     return this.testService.scraping();
   }
 
-  @Cron(CronExpression.EVERY_5_MINUTES)
+  @Cron(CronExpression.EVERY_HOUR)
   async everythingOk() {
     return this.testService.everythingOk();
   }
