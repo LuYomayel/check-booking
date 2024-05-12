@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { TestController } from './test/test.controller';
 import { TestService } from './test/test.service';
 import { EmailService } from './email/email.service';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [],
+  imports: [ScheduleModule.forRoot()],
   controllers: [AppController, TestController],
   providers: [AppService, TestService, EmailService],
 })
