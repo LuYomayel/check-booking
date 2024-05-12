@@ -9,4 +9,9 @@ export class TestController {
   async scraping() {
     return this.testService.scraping();
   }
+
+  @Cron(CronExpression.EVERY_5_MINUTES)
+  async everythingOk() {
+    return this.testService.everythingOk();
+  }
 }

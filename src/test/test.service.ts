@@ -3,6 +3,7 @@ import * as puppeteer from 'puppeteer';
 import { EmailService } from 'src/email/email.service';
 @Injectable()
 export class TestService {
+  public static dates = [];
   constructor(private readonly emailService: EmailService) {}
   async scraping() {
     const browser = await puppeteer.launch({
@@ -117,6 +118,7 @@ export class TestService {
             console.log(`Date ${dateString} is outside the allowed range`);
           }
         });
+        TestService.dates = availableBookingTimes;
       } else {
         console.error('Link "book and pay online" not found');
       }
@@ -125,5 +127,9 @@ export class TestService {
     }
 
     await browser.close();
+  }
+
+  async everythingOk() {
+    this.emailService.sendOkEmail(TestService.dates.join(', '));
   }
 }
