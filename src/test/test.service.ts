@@ -103,8 +103,8 @@ export class TestService {
             return elements.map((element) => element.textContent);
           },
         );
-        availableBookingTimes.push('Thursday, 11 May 2024 12:00 AM');
-        availableBookingTimes.push('Monday, 15 May 2024 12:00 AM');
+        // availableBookingTimes.push('Thursday, 11 May 2024 12:00 AM');
+        // availableBookingTimes.push('Monday, 15 May 2024 12:00 AM');
         const today = new Date();
         const maxDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000); // Today + 7 days
 
