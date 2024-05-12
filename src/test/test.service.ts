@@ -5,7 +5,10 @@ import { EmailService } from 'src/email/email.service';
 export class TestService {
   constructor(private readonly emailService: EmailService) {}
   async scraping() {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox'],
+    });
     const page = await browser.newPage();
     await page.goto(
       'https://www.qld.gov.au/transport/licensing/getting/practical-tests',
