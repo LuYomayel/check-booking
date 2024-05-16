@@ -23,7 +23,7 @@ export class EmailService {
     await transporter.sendMail(mailOptions);
   }
 
-  async sendOkEmail(dateString: string) {
+  async newDatesEmail(dateString: string) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       secure: false,
@@ -36,7 +36,7 @@ export class EmailService {
     const mailOptions = {
       from: 'mailsauto235@gmail.com',
       to: 'yomayelluciano@gmail.com',
-      subject: 'Everything Ok',
+      subject: 'New dates',
       text: `All the dates availables: ${dateString}`,
     };
 

@@ -4,6 +4,7 @@ import { EmailService } from 'src/email/email.service';
 @Injectable()
 export class TestService {
   public static dates = [];
+
   constructor(private readonly emailService: EmailService) {}
   async scraping() {
     const browser = await puppeteer.launch({
@@ -105,10 +106,16 @@ export class TestService {
           },
         );
         // availableBookingTimes.push('Thursday, 11 May 2024 12:00 AM');
-        // availableBookingTimes.push('Monday, 15 May 2024 12:00 AM');
+
         const today = new Date();
         const maxDate = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000); // Today + 7 days
 
+        if (
+          JSON.stringify(TestService.dates) !==
+          JSON.stringify(availableBookingTimes)
+        ) {
+          this.newDatesEmail(availableBookingTimes.join(', '));
+        }
         availableBookingTimes.forEach((dateString) => {
           const date = new Date(dateString);
           if (date.getTime() <= maxDate.getTime()) {
@@ -129,7 +136,7 @@ export class TestService {
     await browser.close();
   }
 
-  async everythingOk() {
-    this.emailService.sendOkEmail(TestService.dates.join(', '));
+  async newDatesEmail(string) {
+    this.emailService.newDatesEmail(string);
   }
 }
